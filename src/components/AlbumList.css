@@ -1,0 +1,98 @@
+html {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.Grade {
+    color: white;
+    font-size: 24px;
+    /* margin-top: 30px; */
+    margin-bottom: 5px;
+    margin-left:10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+}
+
+.divide_line{
+    height: 30px;
+}
+
+.grade_box_initial {
+    height: 34px;
+}
+
+.album_box{
+    --img_size: 10vw;
+    --max_img_size: 124.8px;
+}
+
+.album_text_box{
+    --img_size: 10vw;
+    --max_img_size: 124.8px;
+    height: var(--img_size);
+    max-height: var(--max_img_size);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.album_img{
+    width: var(--img_size);
+    max-width: var(--max_img_size);
+    /* height: 100%; */
+    object-fit: cover;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.albumNameBox{
+    color: white;
+    height: 20px;
+}
+
+.AddButton {
+    width: 10px;
+    height: var(--img_size);
+    max-height: var(--max_img_size);
+    margin-bottom: 5px;
+    /* vertical-align: super; */
+}
+
+.AddButton:hover{
+    stroke:white;
+    cursor: pointer;
+    height: var(--img_size);
+    max-height: var(--max_img_size);
+    stroke-width: 2px;
+}
+
+.AlbumListImage{
+    width: 50vw+50px;
+    max-width: 1400px;
+    display: inline-block;
+    margin-right: 3vw;
+    /* border: 1px solid red; */
+}
+
+.AlbumListText{
+    width: 300px;
+}
+
+.userName{
+    /* width: calc(53vw+360px); */
+    text-align: left;
+    color: white;
+    font-size: 45px;
+    margin-top:30px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    padding-left: calc((47vw-360px)/2);
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+}
+
+.userNameHolder{
+    height: 115px
+}
