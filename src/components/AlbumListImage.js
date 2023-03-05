@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import * as config from './config'
 import './AlbumList.css'
 
+import db from './Firebase'
+import { ref, set, onValue} from "firebase/database";
+
 const AddButton_svg = <svg className='AddButton' viewBox="0 0 6 133" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="3" y1="73" x2="3" y2="133"/><line x1="3" y1="60" x2="3" y2="-1.19249e-08" /><line x1="6" y1="66" x2="-8.74228e-08" y2="66" /><line x1="3" y1="63" x2="3" y2="69" /></svg>
 
-const AlbumListImage = ({hoveredAlbum, setHoveredAlbum}) => {
-    const album = config.test_data.sehoon1106.albums;   
+const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum}) => {
+    // const album = config.test_data.sehoon1106.albums;   
     
     var albumsList=[];
     const [albumsListHook, setAlbumsListHook] = useState([]);
+    const [name, setName] = useState("")
 
     
     const changeHoveredAlbum = (event) =>{
@@ -19,7 +24,7 @@ const AlbumListImage = ({hoveredAlbum, setHoveredAlbum}) => {
         setHoveredAlbum("")
     }
 
-    const generateAlbumsList = () => {
+    const generateAlbumsList = (album) => {
         let tmp = album[album.head];
         let albumArr = [];
         let count = 0;
@@ -44,6 +49,7 @@ const AlbumListImage = ({hoveredAlbum, setHoveredAlbum}) => {
                 if (tmp.albumName) {
                     albumArr.push(
                         <span key={"album_img "+tmp.albumName}>
+                            <Link to={`${tmp.albumId}`}>
                             <img
                                 src={tmp.artworkSmall} alt={tmp.albumName}
                                 id={tmp.albumId}
@@ -54,6 +60,7 @@ const AlbumListImage = ({hoveredAlbum, setHoveredAlbum}) => {
                                     cursor: tmp.albumId===hoveredAlbum?'pointer' : 'none'
                                 }}
                                 className="album_img"/>
+                            </Link>
                         </span>
                     );
                     albumArr.push(AddButton_svg)
@@ -77,13 +84,16 @@ const AlbumListImage = ({hoveredAlbum, setHoveredAlbum}) => {
     }
 
     useEffect(() => {
-        generateAlbumsList();
+        onValue(ref(db, `/${id}/`), (album)=>{
+            setName(album.val().nickname)
+            generateAlbumsList(album.val().albums);
+        });
     }, [hoveredAlbum]);
     
 
     return (
         <div style={{textAlign:"left"}}>
-            <div className="userName">@_sehhhhoon</div>
+            <div className="userName">{name}</div>
             {albumsListHook}
         </div>
     );

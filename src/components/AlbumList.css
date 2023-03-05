@@ -1,90 +1,106 @@
 html {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
+    --img_size: 10vw;
+    --max_img_size: 124.8px;
+    --gap_size: 1vw;
+}
+
+.AlbumListPage{
+    display:flex;
+    justify-content: center;
+    height:100%;
+    min-height: 100vh;
+    width:100%;
+    background-color:#121212;
 }
 
 .Grade {
     color: white;
     font-size: 24px;
-    /* margin-top: 30px; */
     margin-bottom: 5px;
-    margin-left:10px;
+    margin-left:min(20px, 1vw);
     font-family: 'Inter', sans-serif;
     font-weight: 800;
 }
 
 .divide_line{
     height: 30px;
+    display: block;
 }
 
 .grade_box_initial {
     height: 34px;
+    display: block;
 }
 
-.album_box{
-    --img_size: 10vw;
-    --max_img_size: 124.8px;
-}
 
-.album_text_box{
-    --img_size: 10vw;
-    --max_img_size: 124.8px;
-    height: var(--img_size);
-    max-height: var(--max_img_size);
-    padding-top: 5px;
-    padding-bottom: 5px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+/* .album_box{
+    
+} */
 
 .album_img{
     width: var(--img_size);
-    max-width: var(--max_img_size);
+    /* max-width: var(--max_img_size); */
     /* height: 100%; */
     object-fit: cover;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: calc(var(--gap_size) / 2);
+    margin-bottom: calc(var(--gap_size) / 2);
+}
+
+.album_text_box{
+    height: var(--img_size);
+    /* max-height: var(--max_img_size); */
+    padding-top: calc(var(--gap_size) / 2);
+    padding-bottom: calc(var(--gap_size) / 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .albumNameBox{
     color: white;
-    height: 20px;
+    width: fit-content;
+    height: 21px;
+    font-size: 20px;;
 }
 
 .AddButton {
-    width: 10px;
+    width: var(--gap_size);
+    max-width: 20px;
     height: var(--img_size);
-    max-height: var(--max_img_size);
-    margin-bottom: 5px;
+    /* max-height: var(--max_img_size); */
+    margin-bottom: calc(var(--gap_size) / 2);
     /* vertical-align: super; */
 }
 
 .AddButton:hover{
     stroke:white;
     cursor: pointer;
-    height: var(--img_size);
-    max-height: var(--max_img_size);
+    /* height: var(--img_size);
+    max-height: var(--max_img_size); */
     stroke-width: 2px;
 }
 
 .AlbumListImage{
-    width: 50vw+50px;
-    max-width: 1400px;
+    /* width: (50vw + 50px); */
+    /* max-width: 1400px; */
     display: inline-block;
     margin-right: 3vw;
     /* border: 1px solid red; */
 }
 
 .AlbumListText{
-    width: 300px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 .userName{
     /* width: calc(53vw+360px); */
     text-align: left;
     color: white;
-    font-size: 45px;
+    font-size: 60px;
     margin-top:30px;
     margin-bottom: 30px;
     margin-left: 10px;
@@ -94,5 +110,5 @@ html {
 }
 
 .userNameHolder{
-    height: 115px
+    height: 130px
 }

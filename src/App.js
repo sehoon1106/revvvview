@@ -1,16 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import Test from './components/Test'
-import Single_album from './components/Single_album';
 import AlbumListPage from './components/AlbumListPage';
+import Test2 from './components/Test2';
+import AlbumReviewPage from './components/AlbumReviewPage'
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      {/* <Test></Test> */}
-      {/* <Single_album></Single_album> */}
-      <AlbumListPage></AlbumListPage>
-    </div>
+    <Routes>
+      <Route path="/:id" element={<AlbumListPage/>}/>
+      <Route path="/:id/:albumId" element={<AlbumReviewPage/>}/>
+    </Routes>
   );
 }
 
