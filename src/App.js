@@ -11,6 +11,8 @@ function App() {
     <Routes>
       <Route path="/:id" element={<AlbumListPage/>}/>
       <Route path="/:id/:albumId" element={<AlbumReviewPage/>}/>
+      <Route path="/test/:albumName" element={<Test/>}/>
+      <Route path="/upload" element={<Test2/>}/>
     </Routes>
   );
 }

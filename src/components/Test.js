@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function Test() {
+  const {albumName} = useParams()
+
   const [album, setAlbum] = useState(null);
 
   useEffect(() => {
     const fetchAlbum = async () => {
-      const response = await fetch('https://itunes.apple.com/search?term=team+baby&media=music&entity=album&limit=1&lang=ko_KR');
+      const response = await fetch(`https://itunes.apple.com/search?term=${albumName.replaceAll(' ', '+')}&media=music&entity=album&limit=1&lang=ko_KR`);
       var data = await response.json();
       for(var datum of data.results){
         // console.log(datum)
@@ -15,6 +18,7 @@ function Test() {
         var tmp_alb={
           [datum.collectionId] : {
             "albumName": datum.collectionName,
+            "albumId": datum.albumId,
             "addedDate": (today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate()),
             "amgArtistId": datum.amgArtistId,
             "artistName": datum.artistName,
@@ -47,7 +51,7 @@ function Test() {
     <h3>{album.artistName}</h3>
     <p>{album.primaryGenreName}</p>
     </div>
-))
+  ))
 
   return (
     <div>

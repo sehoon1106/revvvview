@@ -8,8 +8,8 @@ const Test2 = () => {
 
     useEffect(()=>{
 
-        set(ref(db,'/test'), 
-            config.test_data
+        set(ref(db,'/sehoon1106'), 
+            config.test_data.sehoon1106
         )
     },[])
 
