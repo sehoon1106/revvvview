@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import {ReactComponent as DeleteIcon} from './Delete.svg'
 
 import * as config from './config'
 import './AlbumReview.css'
 
 import db from './Firebase'
 import { ref, set, onValue} from "firebase/database";
+import DeleteModal from './DeleteModal';
 
 // const album = config.test_data.sehoon1106.albums[1657869377]
 
@@ -29,44 +31,83 @@ const HorizonLine = <div
                     >
                     </div>
 
-
 const AlbumReviewPage = () => {
   const {id, albumId} = useParams()
   const [album, setAlbum] = useState({})
+  const [entireAlbum, setEntireAlbum] = useState({})
   const [bgImage, setBgImage] = useState("")
-  var albumInfo=[];
-  const [albumInfoHook, setAlbumInfoHook]= useState([])
-  
-  const generateAlbumInfo = (album) =>{
-    var releaseDate= new Date(album.releaseDate)
+  const [review, setReview] = useState("")
+  const [typingTimer, settypingTimer] = useState(null)
+  const [modal, setModal] = useState(false)
+  const textareaRef = useRef(null);
+  const delay = 300; // Delay in milliseconds (0.3 seconds)
 
-    releaseDate = `${releaseDate.getFullYear()}/${releaseDate.getMonth()}/${releaseDate.getDate()}`
+  var releaseDate= new Date(album.releaseDate)
 
-    console.log(releaseDate)
+  releaseDate = `${releaseDate.getFullYear()}/${releaseDate.getMonth()}/${releaseDate.getDate()}`
 
-    albumInfo.push(<div className="AlbumTitle">{album.albumName}</div>)
-    albumInfo.push(<div><span className="AlbumAtribute">Artist</span><span>{album.artistName}</span></div>)
-    albumInfo.push(<div><span className="AlbumAtribute">Released</span><span>{releaseDate}</span></div>)
-    albumInfo.push(<div><span className="AlbumAtribute">Genre</span><span>{album.genre}</span></div>)
-    albumInfo.push(<div><span className="AlbumAtribute">Tracks</span><span>{album.trackCount}</span></div>)
-    albumInfo.push(<div><span className="AlbumAtribute">Rank</span><span>asdfg</span></div>)
-    albumInfo.push(HorizonLine)
-    albumInfo.push(<div className="AlbumReviewBox">{album.review}</div>)
+  const handleTextareaResize = () => {
+    textareaRef.current.style.height = "auto"; // Reset height to auto to calculate actual height
+    textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Set height to actual height
+  };
 
-    setAlbumInfoHook(albumInfo)
-    albumInfo=[];
+  const typing = (e) =>{
+    setReview(e.target.value)
+    update_after_delay(e.target.value);
   }
-  
+
+  const deleteClick = (e) => {
+    setModal(true)
+  }
+
+
+  function update_after_delay(current_review) {
+    // Reset the timer on every keyup event
+    clearTimeout(typingTimer);
+    // Start a new timer for delay milliseconds
+    const tmp = setTimeout(async () => {
+      // Run your function here after delay milliseconds
+      // This function will run only if user stops typing for delay milliseconds
+      console.log('User stopped typing');
+      // Call your function here that you want to run after typing delay
+      // For example: myFunction();
+      try {
+        await set(ref(db, `/${id}/albums/${albumId}/review`), current_review);
+        console.log('Review updated successfully in Firebase');
+      } catch (error) {
+        console.error('Failed to update review in Firebase:', error);
+      }
+    }, delay);
+    settypingTimer(tmp)
+  }
+
   useEffect(() => {
-    onValue(ref(db, `/${id}/albums/${albumId}`), (album)=>{
-      setBgImage(album.val().artworkLarge)
-      generateAlbumInfo(album.val());
-      setAlbum(album.val())
+    onValue(ref(db, `/${id}/albums`), (datum)=>{
+      setEntireAlbum(datum.val())
+      const album = datum.val()[albumId]
+      setBgImage(album.artworkLarge)
+      setAlbum(album)
+      setReview(album.review)
     });
   },[albumId,id]);
 
+  useEffect(()=>{
+    return () => {
+      clearTimeout(typingTimer)
+    }
+  },[review])
+
   return (
-    <div style={{backgroundImage: `url(${bgImage})`, display:'flex'}} className="AlbumReviewPage">
+    <>
+    {modal && <DeleteModal setModal={setModal} id={id} albumId={albumId} albumList={entireAlbum}></DeleteModal>}
+    <div style={{
+      backgroundImage: `url(${bgImage})`, 
+      display:'flex',
+      filter: modal?"brightness(0.5)":'none'
+    }} 
+    className="AlbumReviewPage"
+    >
+
       <span className="AlbumArtworkBox">
         <div>
           <div className="return">
@@ -78,10 +119,30 @@ const AlbumReviewPage = () => {
           <img className= "AlbumArtwork" src={album.artworkLarge}></img>
         </div>
       </span>
+
+
       <span className="AlbumInfoBox">
-        {albumInfoHook}
+        <div className="AlbumTitle">
+          <span>{album.albumName}</span>
+          <DeleteIcon onClick={deleteClick} className="Delete"></DeleteIcon>
+        </div>
+        <div><span className="AlbumAtribute">Artist</span><span>{album.artistName}</span></div>
+        <div><span className="AlbumAtribute">Released</span><span>{releaseDate}</span></div>
+        <div><span className="AlbumAtribute">Genre</span><span>{album.genre}</span></div>
+        <div><span className="AlbumAtribute">Tracks</span><span>{album.trackCount}</span></div>
+        {HorizonLine}
+        <textarea
+          ref={textareaRef}
+          className="AlbumReviewBox"
+          placeholder='No Review Written'
+          value={review}
+          onChange={typing}
+          onInput={handleTextareaResize}
+          wrap="soft"
+        ></textarea>
       </span>
     </div>
+    </>
   )
 }
 

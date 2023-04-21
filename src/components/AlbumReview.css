@@ -46,7 +46,7 @@ html {
 .return{
     width:min(80vh, 56vw, calc(50vw + 100px));
     margin-bottom: 15px;
-    margin-left: auto;
+    margin-left: 0px;
     margin-right: auto;
     cursor: pointer;
     text-align: left;
@@ -72,6 +72,14 @@ a:focus{
 .AlbumInfoBox{
     width:400px;
     text-align: left;
+    /* border: 1px solid white; */
+    height: calc(min(80vh, 56vw, calc(50vw + 100px)) + 80px);
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.AlbumInfoBox::-webkit-scrollbar{
+    display: none;
 }
 
 .AlbumTitle{
@@ -79,6 +87,14 @@ a:focus{
     font-size: 32px;
     margin-top: calc(5vh + 39px);
     margin-bottom: 20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Delete{
+    cursor: pointer;
+    fill:white
 }
 
 .AlbumAtribute{
@@ -87,11 +103,31 @@ a:focus{
     margin-bottom: 4px;
 }
 
-/* .AlbumReviewBox{
-    height: 100%;
-} */
+.AlbumReviewBox{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: white;
+    width: calc(100% - 2px);
+    /* height: 100%; */
+    margin-left: 1px;
+    overflow-wrap: break-word;
+    resize: none;
+    padding: 0;
+}
+.AlbumReviewBox::-webkit-scrollbar{
+    display: none;
+}
 
 .AlbumReviewBox:hover{
-    outline: 1px solid #2873FF;
+    outline: 1px solid #51AACF;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+.AlbumReviewBox:focus{
+    outline: 1px solid #51AACF;
+    box-sizing: border-box;
     border-radius: 6px;
 }

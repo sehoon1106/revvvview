@@ -1,0 +1,65 @@
+html {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+}
+
+
+.modal {
+    width: 400px;
+    
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    
+    background-color: #1F1F1F;
+    border-radius: 10px;
+
+    z-index: 10;
+}
+
+.warningText {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonBox{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+
+    margin-inline: 15px;
+    margin-bottom: 20px;
+
+    background-color: transparent;
+    width:100px;
+    height: 45px;
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+.cancleButton{
+    border: 1px solid #999999;
+    color: #999999;
+}
+.deleteButton{
+    border: 1px solid #cf6679;
+    color: #cf6679;
+}
+
+/* .cancleButton:hover{
+    background-color: #999999;
+    color:black
+}
+.deleteButton:hover{
+    background-color: white;
+    color: black;
+} */

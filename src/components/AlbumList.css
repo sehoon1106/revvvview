@@ -16,13 +16,41 @@ html {
 }
 
 .Grade {
+    display: block;
     color: white;
     font-size: 24px;
-    margin-bottom: 5px;
-    margin-left:min(20px, 1vw);
+    padding-bottom: 5px;
+    margin-left:min(20px, var(--gap_size));
     font-family: 'Inter', sans-serif;
     font-weight: 800;
+    height: 24px;
+    width: 54vw;
 }
+
+.IconBox{
+    display: inline-block;
+    width: 20px;
+    height: 24px;
+    cursor:pointer;
+    text-align: center;
+}
+.Icon{
+    height:16px;
+}
+#delete{
+    fill:#999999;
+}
+#delete:hover{
+    fill:white;
+}
+#update{
+    stroke: #999999;
+}
+#update:hover{
+    stroke: white;
+}
+
+
 
 .divide_line{
     height: 30px;
@@ -30,14 +58,15 @@ html {
 }
 
 .grade_box_initial {
-    height: 34px;
+    height: 29px;
     display: block;
 }
 
 
-/* .album_box{
-    
-} */
+.album_box{
+    margin:0px;
+    padding:0px;   
+}
 
 .album_img{
     width: var(--img_size);
@@ -51,8 +80,8 @@ html {
 .album_text_box{
     height: var(--img_size);
     /* max-height: var(--max_img_size); */
-    padding-top: calc(var(--gap_size) / 2);
-    padding-bottom: calc(var(--gap_size) / 2);
+    padding-top: calc(calc(var(--gap_size) / 2));
+    padding-bottom: calc(calc(var(--gap_size) / 2) + 5px);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -104,11 +133,12 @@ html {
     margin-top:30px;
     margin-bottom: 30px;
     margin-left: 10px;
-    padding-left: calc((47vw-360px)/2);
+    padding-left: min(var(--gap_size), 20px);
+    max-width: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
 }
 
 .userNameHolder{
-    height: 130px
+    height: 132px
 }

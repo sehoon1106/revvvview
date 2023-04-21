@@ -11,7 +11,6 @@ import { ref, set, onValue} from "firebase/database";
 const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbumsList}) => {
     // const album = config.test_data.sehoon1106.albums;   
     
-    var tmp_albumsList=[<div className="userNameHolder"></div>];
 
     var dragging = ""
     const [draggingHook, setDraggingHook] = useState("");
@@ -98,6 +97,7 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
     }
     
     const generateAlbumsList = (album) => {
+        var tmp_albumsList=[<div className="userNameHolder"></div>];
         // const album = config.test_data.sehoon1106.albums;
         let tmp = album[album.head];
         let albumArr = [];
@@ -178,24 +178,13 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
             albumArr = <span key={"album_text_box last"} className="album_text_box">{albumArr}</span>;
             tmp_albumsList.push(albumArr);
         }
-        setAlbumsListHook(tmp_albumsList)
-        tmp_albumsList=[]
+        return tmp_albumsList
     }
-
-    useEffect(() => {
-        generateAlbumsList(albumsList);
-    }, [hoveredAlbum, albumsList]);
-    
-    // useEffect(()=>{
-    //     onValue(ref(db, `/${id}/albums`), (album)=>{
-    //         setAlbumsList(album.val())
-    //     });
-    // },[])
     
     
     return (
         <div style={{textAlign:"left"}}>
-            {albumsListHook}
+            {generateAlbumsList(albumsList)}
         </div>
     );
 }
