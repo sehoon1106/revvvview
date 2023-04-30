@@ -38,7 +38,7 @@ const AlbumReviewPage = () => {
   const [bgImage, setBgImage] = useState("")
   const [review, setReview] = useState("")
   const [typingTimer, settypingTimer] = useState(null)
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(-1)
   const textareaRef = useRef(null);
   const delay = 300; // Delay in milliseconds (0.3 seconds)
 
@@ -99,11 +99,11 @@ const AlbumReviewPage = () => {
 
   return (
     <>
-    {modal && <DeleteModal setModal={setModal} id={id} albumId={albumId} albumList={entireAlbum}></DeleteModal>}
+    {modal>=0 && <DeleteModal setModal={setModal} id={id} albumId={albumId} albumList={entireAlbum}></DeleteModal>}
+    {modal>=0 && <div className='overlay'/>}
     <div style={{
       backgroundImage: `url(${bgImage})`, 
       display:'flex',
-      filter: modal?"brightness(0.5)":'none'
     }} 
     className="AlbumReviewPage"
     >
@@ -123,7 +123,7 @@ const AlbumReviewPage = () => {
 
       <span className="AlbumInfoBox">
         <div className="AlbumTitle">
-          <span>{album.albumName}</span>
+          <span>{album.name}</span>
           <DeleteIcon onClick={deleteClick} className="Delete"></DeleteIcon>
         </div>
         <div><span className="AlbumAtribute">Artist</span><span>{album.artistName}</span></div>

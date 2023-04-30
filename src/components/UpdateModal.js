@@ -9,10 +9,10 @@ import { useNavigate } from 'react-router-dom';
 const UpdateModal = ({setModal, id, gradeId, albumList}) => {
     // console.log(albumList)
     const navigate = useNavigate();
-    const [grade, setGrade] = useState(albumList[gradeId].gradeName)
+    const [grade, setGrade] = useState(albumList[gradeId].name)
     
     const close_modal = () =>{
-        setModal(false)
+        setModal(-1)
     }
 
     const typing = (e) =>{
@@ -21,12 +21,13 @@ const UpdateModal = ({setModal, id, gradeId, albumList}) => {
     
     const update_album = () =>{
         if(grade.length<1) return;
-        set(ref(db, `/${id}/albums/${gradeId}/gradeName`), grade)
-        setModal(false)
+        set(ref(db, `/${id}/albums/${gradeId}/name`), grade)
+        console.log(`/${id}/albums/${gradeId}/name`)
+        setModal(-1)
     }
     
     return (
-        <div className="modal">
+        <div className="UpdateModal">
             <div className='inputBox'>
                 <input className="inputBox" value={grade} onChange={typing}
                         placeholder='Grade should be more than 1 letter'></input>

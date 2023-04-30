@@ -28,7 +28,7 @@ const AlbumListPage = () => {
   return (
     <div className="AlbumListPage">
         <span className="AlbumListImage">
-          <AlbumListImage id={id} hoveredAlbum={hoveredAlbum} setHoveredAlbum={setHoveredAlbum} albumsList={albumsList} setAlbumsList={setAlbumsList} name={name}></AlbumListImage>
+          <AlbumListImage id={id} hoveredAlbum={hoveredAlbum} setHoveredAlbum={setHoveredAlbum} albumsList={albumsList} setAlbumsList={setAlbumsList} name={name} is_add_page={false}></AlbumListImage>
         </span>
         <span className="AlbumListText">
           <AlbumListText id={id} hoveredAlbum={hoveredAlbum} setHoveredAlbum={setHoveredAlbum} albumsList={albumsList} setAlbumsList={setAlbumsList}></AlbumListText>

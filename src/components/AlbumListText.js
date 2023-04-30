@@ -105,30 +105,30 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
         var is_first = true;
         
         while (tmp) {
-            if (tmp.gradeName) {
+            if (!tmp.artistName) {
                 if (count > 0) {
                     for(count; count<5; count++){
-                        albumArr.push(<div key={"albumNamebox "+tmp.gradeName+count} className="albumNameBox"></div>)
+                        albumArr.push(<div key={"albumNamebox "+tmp.name+count} className="albumNameBox"></div>)
                     }
-                    tmp_albumsList.push(<span key={"album_text_box "+tmp.gradeName} className="album_text_box">{albumArr}</span>);
+                    tmp_albumsList.push(<span key={"album_text_box "+tmp.name} className="album_text_box">{albumArr}</span>);
                     albumArr = [];
                 }
                 if(is_first===false)
-                    tmp_albumsList.push(<span key={"divide_line "+tmp.gradeName} className="divide_line"></span>);
+                    tmp_albumsList.push(<span key={"divide_line "+tmp.name} className="divide_line"></span>);
                     is_first=false;
-                tmp_albumsList.push(<span key={"grade_box_inital "+tmp.gradeName} className="grade_box_initial"></span>);
+                tmp_albumsList.push(<span key={"grade_box_inital "+tmp.name} className="grade_box_initial"></span>);
                 count = 0;
                 tmp = album[tmp.next];
             } else {
                 if (count === 0) {
                     albumArr = [];
                 }
-                if (tmp.albumName) {
+                if (tmp.artistName) {
                     albumArr.push(
-                        <Link to={`/${id}/${tmp.albumId}`}>
+                        <Link to={`/${id}/${tmp.id}`}>
                         <div 
-                        key={"albumNameBox "+tmp.albumName}
-                        id={tmp.albumId}
+                        key={"albumNameBox "+tmp.name}
+                        id={tmp.id}
                         className={"albumNameBox albumName"}
                         onMouseEnter={changeHoveredAlbum}
                         onMouseOut={resetHoveredAlbum}
@@ -149,21 +149,21 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
                             )
                         }}
                         style={{
-                            // outline: tmp.albumId===hoveredAlbum?'2px solid white' : 'none',
-                            background: tmp.albumId===hoveredAlbum?'#FFFFFF' : 'none',
-                            borderRadius: tmp.albumId===hoveredAlbum?'6px' : 'none',
-                            color: tmp.albumId===hoveredAlbum?'black' : 'white',
-                            cursor: tmp.albumId===hoveredAlbum?'pointer' : 'none'
+                            // outline: tmp.id===hoveredAlbum?'2px solid white' : 'none',
+                            background: tmp.id===hoveredAlbum?'#FFFFFF' : 'none',
+                            borderRadius: tmp.id===hoveredAlbum?'6px' : 'none',
+                            color: tmp.id===hoveredAlbum?'black' : 'white',
+                            cursor: tmp.id===hoveredAlbum?'pointer' : 'none'
                         }}
                         >
-                                {tmp.albumName}
+                                {tmp.name}
                         </div>
                         </Link>
                     );
                     count++;
                 }
                 if (count === 5) {
-                    albumArr = <span key={"album_box "+tmp.albumName} className="album_text_box">{albumArr}</span>;
+                    albumArr = <span key={"album_box "+tmp.name} className="album_text_box">{albumArr}</span>;
                     tmp_albumsList.push(albumArr);
                     count = 0;
                 }

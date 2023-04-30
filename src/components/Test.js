@@ -17,8 +17,8 @@ function Test() {
         datum['artworkUrlLarge'] = tmp.replace('100x100','100000x10000')
         var tmp_alb={
           [datum.collectionId] : {
-            "albumName": datum.collectionName,
-            "albumId": datum.albumId,
+            "name": datum.collectionName,
+            "id": datum.albumId,
             "addedDate": (today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate()),
             "amgArtistId": datum.amgArtistId,
             "artistName": datum.artistName,

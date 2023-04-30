@@ -4,18 +4,20 @@ html {
 }
 
 
-.modal {
+.UpdateModal {
     width: 450px;
     
     position: fixed;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
+
+    padding-bottom: 20px;
     
     background-color: #1F1F1F;
-    border-radius: 10px;
+    border-radius: 30px;
 
-    z-index: 10;
+    z-index: 10000;
 }
 
 .inputBox{
@@ -56,7 +58,6 @@ button{
     font-size: 20px;
 
     margin-inline: 15px;
-    margin-bottom: 20px;
 
     background-color: transparent;
     width:100px;

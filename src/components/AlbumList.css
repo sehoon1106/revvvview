@@ -93,8 +93,11 @@ html {
     height: 21px;
     font-size: 20px;;
 }
-
+.AddButtonBox{
+    display: inline-block;
+}
 .AddButton {
+    display: inline-block;
     width: var(--gap_size);
     max-width: 20px;
     height: var(--img_size);
@@ -141,4 +144,14 @@ html {
 
 .userNameHolder{
     height: 132px
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    z-index: 9999; /* adjust the z-index value as needed */
 }

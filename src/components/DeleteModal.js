@@ -8,17 +8,14 @@ import { useNavigate } from 'react-router-dom';
 const DeleteModal = ({setModal, id, albumId, albumList}) => {
     // console.log(albumList)
     const navigate = useNavigate();
-
     
     const close_modal = () =>{
-        setModal(false)
+        setModal(-1)
     }
     
     const delete_album = () =>{
 
         var tmp_list = {...albumList}
-
-        console.log(tmp_list)
 
         const connect_data = (datum_addr, target, direction) => {
             if((tmp_list[datum_addr]===null)||(tmp_list[datum_addr]===undefined)) return;
@@ -47,11 +44,11 @@ const DeleteModal = ({setModal, id, albumId, albumList}) => {
             tmp_list
         )
         remove(ref(db, `/${id}/albums/${albumId}`));
-        
+        setModal(-1)
     }
     
     return (
-        <div className="modal">
+        <div className="DeleteModal">
             <div className="warningText">Do you really want to delete?</div>
             <div className='buttonBox'>
                 <button className="cancleButton" onClick={close_modal}>Cancle</button>

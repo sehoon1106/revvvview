@@ -21,8 +21,8 @@ export const test_data = {
           "albums": {
             "288277647": {
               "addedDate": "2023-4-15",
-              "albumId": "288277647",
-              "albumName": "Loveless",
+              "id": "288277647",
+              "name": "Loveless",
               "amgArtistId": 4984,
               "artistName": "my bloody valentine",
               "artworkLarge": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3b/4b/45/3b4b459a-84ed-f03b-0f3c-85fd145a5108/mzi.oewhanoe.jpg/100000x10000bb.jpg",
@@ -35,8 +35,8 @@ export const test_data = {
               "trackCount": 11
             },
             1594794840:{
-                "albumName": "UNDERGROUND ROCKSTAR",
-                "albumId": "1594794840",
+                "name": "UNDERGROUND ROCKSTAR",
+                "id": "1594794840",
                 "addedDate": "2023-4-15",
                 "artistName": "창모",
                 "artworkLarge": "https://is3-ssl.mzstatic.com/image/thumb/Music126/v4/d0/ac/ef/d0acefcb-915b-74d0-0306-a21dadd93991/888272089813_Cover.jpg/100000x10000bb.jpg",
@@ -49,8 +49,8 @@ export const test_data = {
                 "trackCount": 11
             },
             1468597994:{
-                "albumName": "Crumbling",
-                "albumId": "1468597994",
+                "name": "Crumbling",
+                "id": "1468597994",
                 "addedDate": "2023-4-15",
                 "amgArtistId": 3562792,
                 "artistName": "공중도둑",
@@ -65,8 +65,8 @@ export const test_data = {
             },
             "1097862703": {
               "addedDate": "2023-4-15",
-              "albumId": "1097862703",
-              "albumName": "The Bends",
+              "id": "1097862703",
+              "name": "The Bends",
               "amgArtistId": 41092,
               "artistName": "Radiohead",
               "artworkLarge": "https://is5-ssl.mzstatic.com/image/thumb/Music112/v4/a5/c6/9b/a5c69b1d-22ba-a7e3-e1c2-970c6b53c8eb/634904078065.png/100000x10000bb.jpg",
@@ -80,8 +80,8 @@ export const test_data = {
             },
             "1470906820": {
               "addedDate": "2023-4-15",
-              "albumId": "1470906820",
-              "albumName": "Enlightenment",
+              "id": "1470906820",
+              "name": "Enlightenment",
               "amgArtistId": 2963349,
               "artistName": "쏜애플",
               "artworkLarge": "https://is2-ssl.mzstatic.com/image/thumb/Music113/v4/9f/d7/06/9fd706d4-0d10-03ee-95c5-24d7d2421ca8/190704_Cover.jpg/100000x10000bb.jpg",
@@ -95,8 +95,8 @@ export const test_data = {
             },
             "1490544506": {
               "addedDate": "2023-2-26",
-              "albumId": "1490544506",
-              "albumName": "Every letter I sent you.",
+              "id": "1490544506",
+              "name": "Every letter I sent you.",
               "amgArtistId": 3170740,
               "artistName": "백예린",
               "artworkLarge": "https://is4-ssl.mzstatic.com/image/thumb/Music115/v4/ca/58/77/ca5877d9-2e1e-0456-c3b2-7704e423dc70/Every_letter_I_sent_you_3000.jpg/100000x10000bb.jpg",
@@ -110,8 +110,8 @@ export const test_data = {
             },
             "1543102982": {
               "addedDate": "2023-2-26",
-              "albumId": "1543102982",
-              "albumName": "tellusboutyourself",
+              "id": "1543102982",
+              "name": "tellusboutyourself",
               "amgArtistId": 3170740,
               "artistName": "백예린",
               "artworkLarge": "https://is2-ssl.mzstatic.com/image/thumb/Music125/v4/b6/0c/6c/b60c6c9c-2ac3-4b93-cae3-b6e4911d503b/8809784430087.jpg/100000x10000bb.jpg",
@@ -125,8 +125,8 @@ export const test_data = {
             },
             "1547384602": {
               "addedDate": "2023-3-2",
-              "albumId": "1547384602",
-              "albumName": "TEAM BABY",
+              "id": "1547384602",
+              "name": "TEAM BABY",
               "amgArtistId": 2396439,
               "artistName": "검정치마",
               "artworkLarge": "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/db/f6/b8/dbf6b8cd-301c-af47-1540-82b4a44be6ea/195497718511.jpg/100000x10000bb.jpg",
@@ -140,8 +140,8 @@ export const test_data = {
             },
             "1563369236": {
               "addedDate": "2023-4-15",
-              "albumId": "1563369236",
-              "albumName": "To See the Next Part of the Dream",
+              "id": "1563369236",
+              "name": "To See the Next Part of the Dream",
               "artistName": "파란노을",
               "artworkLarge": "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/84/67/1b/84671b2c-f97f-5280-0b73-383bcc8e4f29/Parannoul_ToSeeTheNextPartOfTheDream_3000.jpg/100000x10000bb.jpg",
               "artworkSmall": "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/84/67/1b/84671b2c-f97f-5280-0b73-383bcc8e4f29/Parannoul_ToSeeTheNextPartOfTheDream_3000.jpg/300x300bb.jpg",
@@ -154,8 +154,8 @@ export const test_data = {
             },
             "1587319328": {
               "addedDate": "2023-3-2",
-              "albumId": "1587319328",
-              "albumName": "DON′T DIE COLORS",
+              "id": "1587319328",
+              "name": "DON′T DIE COLORS",
               "amgArtistId": 3436099,
               "artistName": "THAMA",
               "artworkLarge": "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/cb/d6/60/cbd6606f-8b83-1938-70e4-f268f26a323a/888272086676_Cover.jpg/100000x10000bb.jpg",
@@ -169,8 +169,8 @@ export const test_data = {
             },
             "1626990499": {
               "addedDate": "2023-3-2",
-              "albumId": "1626990499",
-              "albumName": "VERTIGO",
+              "id": "1626990499",
+              "name": "VERTIGO",
               "amgArtistId": 3507104,
               "artistName": "Panda Gomm",
               "artworkLarge": "https://is3-ssl.mzstatic.com/image/thumb/Music122/v4/26/bf/d3/26bfd393-a935-fe62-2df5-b719ca516d3b/191953173955.jpg/100000x10000bb.jpg",
@@ -184,8 +184,8 @@ export const test_data = {
             },
             "1645023321": {
               "addedDate": "2023-3-2",
-              "albumId": "1645023321",
-              "albumName": "TEEN TROUBLES",
+              "id": "1645023321",
+              "name": "TEEN TROUBLES",
               "amgArtistId": 2396439,
               "artistName": "검정치마",
               "artworkLarge": "https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/d4/a6/03/d4a6030d-28bd-1b61-5a7f-9b64d5be7d67/197187001651.jpg/100000x10000bb.jpg",
@@ -199,8 +199,8 @@ export const test_data = {
             },
             "1649291786": {
               "addedDate": "2023-2-26",
-              "albumId": "1649291786",
-              "albumName": "some hearts are for two",
+              "id": "1649291786",
+              "name": "some hearts are for two",
               "amgArtistId": 2991211,
               "artistName": "김아일",
               "artworkLarge": "https://is5-ssl.mzstatic.com/image/thumb/Music122/v4/77/f5/14/77f51484-6d0e-55a5-a538-bf1066080652/196922226595_Cover.jpg/100000x10000bb.jpg",
@@ -214,8 +214,8 @@ export const test_data = {
             },
             "1657869377": {
               "addedDate": "2023-2-26",
-              "albumId": "1657869377",
-              "albumName": "SOS",
+              "id": "1657869377",
+              "name": "SOS",
               "amgArtistId": 2882873,
               "artistName": "SZA",
               "artworkLarge": "https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/bd/3b/a9/bd3ba9fb-9609-144f-bcfe-ead67b5f6ab3/196589564931.jpg/100000x10000bb.jpg",
@@ -229,8 +229,8 @@ export const test_data = {
             },
             "1672486499": {
               "addedDate": "2023-2-26",
-              "albumId": "1672486499",
-              "albumName": "THE FROST ON YOUR EDGE",
+              "id": "1672486499",
+              "name": "THE FROST ON YOUR EDGE",
               "artistName": "서리",
               "artworkLarge": "https://is5-ssl.mzstatic.com/image/thumb/Music126/v4/d1/46/0f/d1460f9e-146d-b144-8a95-00cd6c3c2881/8809900757708.jpg/100000x10000bb.jpg",
               "artworkSmall": "https://is5-ssl.mzstatic.com/image/thumb/Music126/v4/d1/46/0f/d1460f9e-146d-b144-8a95-00cd6c3c2881/8809900757708.jpg/300x300bb.jpg",
@@ -242,20 +242,20 @@ export const test_data = {
               "trackCount": 9
             },
             "01001010": {
-              "gradeName": "Best of the Best",
-              "gradeId":"01001010",
+              "name": "Best of the Best",
+              "id":"01001010",
               "next": "1657869377",
               "prev": ""
             },
             "0102132130": {
-                "gradeName": "Not Bad",
-                "gradeId":"0102132130",
+                "name": "Not Bad",
+                "id":"0102132130",
                 "next": "1649291786",
                 "prev": "1672486499"
             },
             "01859437509": {
-                "gradeName": "Last",
-                "gradeId":"01859437509",
+                "name": "Last",
+                "id":"01859437509",
                 "next": "",
                 "prev": "1468597994"
             },
