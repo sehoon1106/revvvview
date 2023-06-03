@@ -54,7 +54,7 @@ const AddModal = ({setModal, id, prev, next, albumList}) => {
         setModal(-1)
     }
     
-    const add_album = () => {
+    const add_album = async () => {
         var added_albumList = {...albumList}
         var input_data;
         var addr;
@@ -65,7 +65,8 @@ const AddModal = ({setModal, id, prev, next, albumList}) => {
                 ...inputAlbum,
                 next: `${next}`,
                 prev:`${prev}`,
-                id:`${inputAlbum.id}`
+                id:`${inputAlbum.id}`,
+                review:`${review}`
             }
             addr=inputAlbum.id
         }
@@ -76,14 +77,14 @@ const AddModal = ({setModal, id, prev, next, albumList}) => {
                 name: `${type}`,
                 id:`${addr}`,
                 next: `${next}`,
-                prev: `${prev}`
+                prev: `${prev}`,
             }
         }
-        set(ref(db, `/${id}/albums/${addr}`), input_data)
+        await set(ref(db, `/${id}/albums/${addr}`), input_data)
         if(prev.length>=1)
-            set(ref(db, `/${id}/albums/${prev}/next`),addr)
+            await set(ref(db, `/${id}/albums/${prev}/next`),addr)
         if(next.length>=1)
-            set(ref(db, `/${id}/albums/${next}/prev`),addr)
+            await set(ref(db, `/${id}/albums/${next}/prev`),addr)
 
         setModal(-1)
     }
@@ -215,7 +216,7 @@ const AddModal = ({setModal, id, prev, next, albumList}) => {
             {addMode===1 &&
                 <div className="centerDiv">
                     <input  value={type} onChange={typing}
-                    placeholder='Grade should be more than 1 letter'></input>
+                    placeholder='Grade should be more than 1 letter' className='gradeNameInput'></input>
                 </div>
             }
 

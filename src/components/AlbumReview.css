@@ -131,3 +131,7 @@ a:focus{
     box-sizing: border-box;
     border-radius: 6px;
 }
+.AlbumReviewBox:disabled{
+    outline: none;
+    cursor:text;
+}

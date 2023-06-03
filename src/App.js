@@ -6,11 +6,13 @@ import Test2 from './components/Test2';
 import Test3 from './components/Test3';
 import AlbumReviewPage from './components/AlbumReviewPage'
 import { Link, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
 
 function App() {
   return (
     <>
     <Routes>
+      <Route path="/" element={<Login></Login>}></Route>
       <Route path="/:id" element={<AlbumListPage/>}/>
       <Route path="/:id/:albumId" element={<AlbumReviewPage/>}/>
       <Route path="/test/:albumName" element={<Test/>}/>

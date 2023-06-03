@@ -10,6 +10,7 @@ import './AlbumReview.css'
 import db from './Firebase'
 import { ref, set, onValue} from "firebase/database";
 import DeleteModal from './DeleteModal';
+import { getAuth } from 'firebase/auth';
 
 // const album = config.test_data.sehoon1106.albums[1657869377]
 
@@ -42,6 +43,24 @@ const AlbumReviewPage = () => {
   const textareaRef = useRef(null);
   const delay = 300; // Delay in milliseconds (0.3 seconds)
 
+  const auth = getAuth();
+  const [is_owner, setOwner] = useState(false)
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user && user.uid === id) {
+        setOwner(true)
+      } else {
+        setOwner(false)
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+
   var releaseDate= new Date(album.releaseDate)
 
   releaseDate = `${releaseDate.getFullYear()}/${releaseDate.getMonth()}/${releaseDate.getDate()}`
@@ -52,6 +71,7 @@ const AlbumReviewPage = () => {
   };
 
   const typing = (e) =>{
+    if(!is_owner) return;
     setReview(e.target.value)
     update_after_delay(e.target.value);
   }
@@ -88,6 +108,8 @@ const AlbumReviewPage = () => {
       setBgImage(album.artworkLarge)
       setAlbum(album)
       setReview(album.review)
+      
+      document.title = `${album.name}`;
     });
   },[albumId,id]);
 
@@ -139,6 +161,7 @@ const AlbumReviewPage = () => {
           onChange={typing}
           onInput={handleTextareaResize}
           wrap="soft"
+          disabled={is_owner?false:true}
         ></textarea>
       </span>
     </div>

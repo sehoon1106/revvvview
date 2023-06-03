@@ -19,9 +19,9 @@ const UpdateModal = ({setModal, id, gradeId, albumList}) => {
         setGrade(e.target.value)
     }
     
-    const update_album = () =>{
+    const update_album = async () =>{
         if(grade.length<1) return;
-        set(ref(db, `/${id}/albums/${gradeId}/name`), grade)
+        await set(ref(db, `/${id}/albums/${gradeId}/name`), grade)
         console.log(`/${id}/albums/${gradeId}/name`)
         setModal(-1)
     }
@@ -29,7 +29,7 @@ const UpdateModal = ({setModal, id, gradeId, albumList}) => {
     return (
         <div className="UpdateModal">
             <div className='inputBox'>
-                <input className="inputBox" value={grade} onChange={typing}
+                <input className="UpdateModalText" value={grade} onChange={typing}
                         placeholder='Grade should be more than 1 letter'></input>
                 </div>
             <div className='buttonBox'>

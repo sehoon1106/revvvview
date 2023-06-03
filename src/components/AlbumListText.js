@@ -7,16 +7,55 @@ import './AlbumList.css'
 import db from './Firebase'
 import { ref, set, onValue} from "firebase/database";
 
+import html2canvas from 'html2canvas';
+import ScreenshotModal from './ScreenshotModal';
+import { GoogleAuthProvider, browserLocalPersistence, getAuth, setPersistence, signInWithRedirect, signOut } from 'firebase/auth';
 
-const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbumsList}) => {
+
+const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbumsList, name, is_owner, pageRef}) => {
     // const album = config.test_data.sehoon1106.albums;   
-    
 
     var dragging = ""
     const [draggingHook, setDraggingHook] = useState("");
+    const [screenshot, setScreenshot] = useState(null);    
+    const [modal, setModal] = useState(-1);
+    const [is_logged_in, setLoggedIn] = useState(false)
 
-    const [albumsListHook, setAlbumsListHook] = useState([]);
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    const signInGoogle = () => {
+        setPersistence(auth, browserLocalPersistence)
+          .then(() => {
+            signInWithRedirect(auth, provider);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    };
+    const signOutHandler = () => {
+        signOut(auth)
+        .then(() => {
+            setLoggedIn(false);
+            })
+            .catch((error) => {
+            console.log(error);
+            });
+    };
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(async(user) => {
+            if (user) {
+                setLoggedIn(true);
+            } else {
+                setLoggedIn(false);
+            }
+        });
     
+        return () => {
+          unsubscribe();
+        };
+    }, []);
+
     const changeHoveredAlbum = (event) =>{
         setHoveredAlbum(event.target.id)
     }
@@ -95,14 +134,25 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
 
         insert_album(tmp,target)
     }
+
+    const captureScreenshot = () => {
+        html2canvas(pageRef.current, {allowTaint:true, useCORS:true}).then((canvas) => {
+            setScreenshot(canvas)
+            setModal(1)
+        });
+      };
     
     const generateAlbumsList = (album) => {
-        var tmp_albumsList=[<div className="userNameHolder"></div>];
+        var tmp_albumsList=[<div className="userNameHolder">
+                                {is_logged_in?<div id='LogInText'onClick={signOutHandler}>Log Out</div>:<div id='LogInText'onClick={signInGoogle}>Log In</div>}
+                            </div>];
         // const album = config.test_data.sehoon1106.albums;
         let tmp = album[album.head];
         let albumArr = [];
         let count = 0;
         var is_first = true;
+
+        const camera_icon = <svg id="camera" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="inherit" d="M20 4h-3.17L15 2H9L7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 14H4V6h4.05l1.83-2h4.24l1.83 2H20v12M12 7a5 5 0 0 0-5 5a5 5 0 0 0 5 5a5 5 0 0 0 5-5a5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3a3 3 0 0 1 3-3a3 3 0 0 1 3 3a3 3 0 0 1-3 3Z"/></svg>
         
         while (tmp) {
             if (!tmp.artistName) {
@@ -113,10 +163,18 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
                     tmp_albumsList.push(<span key={"album_text_box "+tmp.name} className="album_text_box">{albumArr}</span>);
                     albumArr = [];
                 }
-                if(is_first===false)
-                    tmp_albumsList.push(<span key={"divide_line "+tmp.name} className="divide_line"></span>);
+                if(is_first){
+                    tmp_albumsList.push(
+                        <span key={"grade_box "+tmp.name} className="grade_box_initial" onClick={captureScreenshot}>
+                            <span className='IconBox'>{camera_icon}</span>
+                        </span>
+                    );
                     is_first=false;
-                tmp_albumsList.push(<span key={"grade_box_inital "+tmp.name} className="grade_box_initial"></span>);
+                }
+                else{
+                    tmp_albumsList.push(<span key={"divide_line "+tmp.name} className="divide_line"></span>);
+                    tmp_albumsList.push(<span key={"grade_box "+tmp.name} className="grade_box"></span>);
+                }
                 count = 0;
                 tmp = album[tmp.next];
             } else {
@@ -132,7 +190,7 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
                         className={"albumNameBox albumName"}
                         onMouseEnter={changeHoveredAlbum}
                         onMouseOut={resetHoveredAlbum}
-                        draggable='true'
+                        draggable={is_owner?'true':'false'}
                         onDragStart={(event)=>{
                             dragging = event.target.id
                             setDraggingHook(dragging)
@@ -142,9 +200,9 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
                             e.preventDefault()
                             enter_album(dragging, e.target.getAttribute("id"))
                         }}
-                        onDrop = {(e)=>{
+                        onDrop = {async (e)=>{
                             setDraggingHook("");
-                            set(ref(db, `/${id}/albums`),
+                            await set(ref(db, `/${id}/albums`),
                                 albumsList
                             )
                         }}
@@ -184,6 +242,8 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
     
     return (
         <div style={{textAlign:"left"}}>
+            {modal===1 && <div className='overlay'/>}
+            {modal===1 && <ScreenshotModal setModal={setModal} name={name} image={screenshot}/>}
             {generateAlbumsList(albumsList)}
         </div>
     );

@@ -13,7 +13,7 @@ const DeleteModal = ({setModal, id, albumId, albumList}) => {
         setModal(-1)
     }
     
-    const delete_album = () =>{
+    const delete_album = async () =>{
 
         var tmp_list = {...albumList}
 
@@ -40,10 +40,10 @@ const DeleteModal = ({setModal, id, albumId, albumList}) => {
 
         navigate(`/${id}`)
         
-        set(ref(db, `/${id}/albums/`),
+        await set(ref(db, `/${id}/albums/`),
             tmp_list
         )
-        remove(ref(db, `/${id}/albums/${albumId}`));
+        await remove(ref(db, `/${id}/albums/${albumId}`));
         setModal(-1)
     }
     

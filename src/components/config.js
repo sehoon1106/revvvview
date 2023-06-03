@@ -17,7 +17,7 @@
 */
 
 export const test_data = {
-        "sehoon1106": {
+        "testee": {
           "albums": {
             "288277647": {
               "addedDate": "2023-4-15",
@@ -261,6 +261,6 @@ export const test_data = {
             },
             "head": "01001010"
         },
-        "nickname": "_sehhhhoon"
+        "nickname": "testeeeeeeee"
     }
 }

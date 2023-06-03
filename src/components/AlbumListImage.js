@@ -12,14 +12,14 @@ import AddModal from './AddModal';
 import db from './Firebase'
 import { ref, set, onValue} from "firebase/database";
 
-const AddButton_svg = <svg className='AddButton' viewBox="0 0 6 133" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="3" y1="73" x2="3" y2="133"/><line x1="3" y1="60" x2="3" y2="-1.19249e-08" /><line x1="6" y1="66" x2="-8.74228e-08" y2="66" /><line x1="3" y1="63" x2="3" y2="69" /></svg>
+const AddButton_svg= <svg className='AddButton' viewBox="0 0 6 133" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="3" y1="73" x2="3" y2="133"/><line x1="3" y1="60" x2="3" y2="-1.19249e-08" /><line x1="6" y1="66" x2="-8.74228e-08" y2="66" /><line x1="3" y1="63" x2="3" y2="69" /></svg>
 
-const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbumsList, name}) => {
+const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbumsList, name, is_owner}) => {
     // const album = config.test_data.sehoon1106.albums;   
     const [ModalData, setModalData] = useState({})
     const [modal, setModal] = useState(-1)
     const [addButtonHover, setAddButtonHover] =useState("")
-    
+        
     var dragging = ""
     const [draggingHook, setDraggingHook] = useState("");
     
@@ -129,7 +129,7 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
     const generateAlbumsList = (album) => {
         var tmp_albumsList=[];
         let tmp = album[album.head];
-        let last_node = {id:""};
+        let last_node = {};
         let albumArr = [];
         let count = 0;
         var is_first = true;
@@ -147,14 +147,15 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                             onClick={(e)=>{
                                 open_modal(2,e.currentTarget.getAttribute('prev'),e.currentTarget.getAttribute('next'))
                             }}>
-                                {AddButton_svg}
+                                {is_owner?AddButton_svg:null}
                             </span>
                             {albumArr}
                             </div>);
                     albumArr = [];
                 }
-                if(is_first===false)
+                if(is_first===false){
                     tmp_albumsList.push(<div key={"divide_line "+tmp.name} className="divide_line"></div>);
+                }
                 is_first=false;
                 tmp_albumsList.push(<div id={tmp.id} onMouseEnter={changeHoveredAlbum} onMouseLeave={resetHoveredAlbum}>
                                     <span
@@ -168,7 +169,7 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                                     >
                                         {tmp.name}
                                         <span
-                                            style={{display: `${hoveredAlbum===tmp.id?"inline-block":"none"}`, marginLeft:'10px'}}
+                                            style={{display: `${(is_owner && hoveredAlbum===tmp.id)?"flex":"none"}`, alignItems:"end", marginLeft:'10px'}}
                                         >
                                             <span className='IconBox' style={{display:`${albumsList.head===tmp.id?'none':''}`}}>
                                                 <DeleteIcon className="Icon" id="delete" onClick={()=>open_modal(0)}></DeleteIcon>
@@ -176,11 +177,18 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                                             <span className='IconBox'>
                                                 <UpdateIcon className='Icon' id="update" onClick={()=>open_modal(1)}></UpdateIcon>
                                             </span>
+                                            <span className='IconBox'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" id="plus" viewBox="0 0 20 20"
+                                                className='Icon' prev={tmp.id} next={tmp.next} onClick={(e)=>{
+                                                    open_modal(2,e.currentTarget.getAttribute('prev'),e.currentTarget.getAttribute('next'))
+                                                }}>
+                                                    <path fill="inherit" d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6h-2Z"/></svg>
+                                            </span>
                                         </span>
                                     </span>
                                     </div>);
                 count = 0;
-                tmp = album[tmp.next];
+                
             } else {
                 if (count === 0) {
                     albumArr = [];
@@ -198,7 +206,7 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                                 id={tmp.id}
                                 onMouseEnter={changeHoveredAlbum}
                                 onMouseOut={resetHoveredAlbum}
-                                draggable='true'
+                                draggable={is_owner?'true':'false'}
                                 onDragStart={(event)=>{
                                     dragging = event.target.id
                                     setDraggingHook(dragging)
@@ -209,9 +217,9 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                                     const target = e.target.getAttribute("id")
                                     enter_album(dragging, target)
                                 }}
-                                onDrop = {(e)=>{
+                                onDrop = {async (e)=>{
                                     setDraggingHook("");
-                                    set(ref(db, `/${id}/albums`),
+                                    await set(ref(db, `/${id}/albums`),
                                         albumsList
                                     )
                                 }}
@@ -228,7 +236,7 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                         onClick={(e)=>{
                             open_modal(2,e.currentTarget.getAttribute('prev'),e.currentTarget.getAttribute('next'))
                         }}
-                        key={`AddButton ${tmp.id} ${tmp.next}`}>{AddButton_svg}</span></>)
+                        key={`AddButton ${tmp.id} ${tmp.next}`}>{is_owner?AddButton_svg:null}</span></>)
 
                     count++;
                 }
@@ -242,15 +250,27 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                                     onClick={(e)=>{
                                         open_modal(2,e.currentTarget.getAttribute('prev'),e.currentTarget.getAttribute('next'))
                                     }}>
-                                        {AddButton_svg}</span>
+                                        {is_owner?AddButton_svg:null}</span>
                                     {albumArr}
                                 </div>;
                     tmp_albumsList.push(albumArr);
                     count = 0;
                 }
-                last_node = tmp;
-                tmp = album[tmp.next];
             }
+            last_node=tmp;
+            tmp = album[tmp.next];
+        }
+        
+        if(last_node.artistName===undefined){
+            tmp_albumsList.push(
+                <div className='add_album_box'
+                    prev={last_node.id}
+                    next=""
+                    onClick={(e)=>{
+                        open_modal(2,e.currentTarget.getAttribute('prev'),e.currentTarget.getAttribute('next'))
+                    }} >
+                    <svg xmlns="http://www.w3.org/2000/svg" className='add_album_plus' viewBox="0 0 24 24"><path fill="currentColor" d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6h-2Z"/></svg>
+                </div>)
         }
 
         if (count > 0) {
@@ -263,7 +283,7 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                             onClick={(e)=>{
                                 open_modal(2,e.currentTarget.getAttribute('prev'),e.currentTarget.getAttribute('next'))
                             }} 
-                            >{AddButton_svg}</span>
+                            >{is_owner?AddButton_svg:null}</span>
                             {albumArr}
                         </div>;
             tmp_albumsList.push(albumArr);

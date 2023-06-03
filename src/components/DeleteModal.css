@@ -55,6 +55,9 @@ button{
     border: 1px solid #cf6679;
     color: #cf6679;
 }
+.deleteButton:hover{
+    border-width: 2px;
+}
 
 /* .cancleButton:hover{
     background-color: #999999;

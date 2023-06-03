@@ -16,7 +16,7 @@ html {
 }
 
 .Grade {
-    display: block;
+    display: flex;
     color: white;
     font-size: 24px;
     padding-bottom: 5px;
@@ -49,6 +49,20 @@ html {
 #update:hover{
     stroke: white;
 }
+#plus{
+    height: 20px;
+    /* padding-ts; */
+    fill:#999999
+}
+#plus:hover{
+    fill: white
+}
+#camera{
+    fill: #999999;
+}
+#camera:hover{
+    fill: white;
+}
 
 
 
@@ -57,9 +71,14 @@ html {
     display: block;
 }
 
-.grade_box_initial {
+.grade_box {
     height: 29px;
     display: block;
+}
+.grade_box_initial{
+    height: 29px;
+    display: flex;
+    justify-content: right;
 }
 
 
@@ -70,11 +89,32 @@ html {
 
 .album_img{
     width: var(--img_size);
+    height: var(--img_size);
     /* max-width: var(--max_img_size); */
     /* height: 100%; */
     object-fit: cover;
     margin-top: calc(var(--gap_size) / 2);
     margin-bottom: calc(var(--gap_size) / 2);
+}
+
+.add_album_box{
+    width: var(--img_size);
+    height: var(--img_size);
+    outline: 2px dashed #999999;
+
+    margin-left: min(var(--gap_size), 20px);
+    margin-top: calc(var(--gap_size) / 2);
+    margin-bottom: calc(var(--gap_size) / 2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+.add_album_plus{
+    width: calc(var(--img_size) / 2);
+    color: #999999;
 }
 
 .album_text_box{
@@ -95,6 +135,8 @@ html {
 }
 .AddButtonBox{
     display: inline-block;
+    width: var(--gap_size);
+    max-width: 20px;
 }
 .AddButton {
     display: inline-block;
@@ -115,8 +157,8 @@ html {
 }
 
 .AlbumListImage{
-    /* width: (50vw + 50px); */
-    /* max-width: 1400px; */
+    width: 56vw;
+    max-width: calc(50vw + 120px);
     display: inline-block;
     margin-right: 3vw;
     /* border: 1px solid red; */
@@ -129,22 +171,32 @@ html {
 }
 
 .userName{
-    /* width: calc(53vw+360px); */
     text-align: left;
     color: white;
     font-size: 60px;
     margin-top:30px;
     margin-bottom: 30px;
-    margin-left: 10px;
     padding-left: min(var(--gap_size), 20px);
-    max-width: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
 }
 
 .userNameHolder{
-    height: 132px
+    height: 132px;
+    display: flex;
+    justify-content: right;
+    align-items: end;
 }
+
+#LogInText{
+    color:#999999;
+    margin-bottom: 40px;
+}
+#LogInText:hover{
+    color:white;
+    cursor: pointer;;
+}
+
 
 .overlay{
     position: fixed;

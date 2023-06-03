@@ -52,12 +52,50 @@ html {
 .AddModalInput{
     width: calc(100% - 50px);
     text-align: left;
+    margin-left: 20px;
+    text-align: center;
+
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color:white;
+
+    margin-top: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
 }
 .AddModalInput:placeholder-shown{
     border-bottom: 2px solid #999999;
 }
 .AddModalInput::placeholder{
     color:#999999;
+}
+
+.gradeNameInput{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color:white;
+    
+    width:400px;
+
+    margin-top: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+}
+.gradeNameInput:placeholder-shown{
+    border-bottom: 2px solid #cf6679;
+}
+.gradeNameInput::placeholder{
+    color:#cf6679
 }
 
 .searchResultBox{
@@ -69,6 +107,7 @@ html {
     overflow-y: auto;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    
 }
 .searchResultBox::-webkit-scrollbar{
     display: none;
@@ -172,7 +211,10 @@ button{
     border: 1px solid #999999;
     color: #999999;
 }
-.deleteButton{
-    border: 1px solid #cf6679;
-    color: #cf6679;
+.doneButton{
+    border: 1px solid #51AACF;
+    color: #51AACF;
+}
+.cancleButton:hover, .doneButton:hover{
+    border-width:2px;
 }
