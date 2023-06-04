@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./Login.css"
 import { GoogleAuthProvider, browserLocalPersistence, getAuth, getRedirectResult, setPersistence, signInWithRedirect, signOut } from 'firebase/auth'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ref, set } from 'firebase/database'
 import db from './Firebase'
 

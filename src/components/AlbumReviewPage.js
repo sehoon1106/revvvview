@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {ReactComponent as DeleteIcon} from './Delete.svg'
 
-import * as config from './config'
 import './AlbumReview.css'
 
 import db from './Firebase'
@@ -138,7 +137,7 @@ const AlbumReviewPage = () => {
               {"  Return to the Main Page"}
             </Link>
           </div>
-          <img className= "AlbumArtwork" src={album.artworkLarge}></img>
+          <img className= "AlbumArtwork" src={album.artworkLarge} alt={album.name}></img>
         </div>
       </span>
 
