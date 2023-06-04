@@ -160,6 +160,15 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                                         e.preventDefault()
                                         if(e.target.getAttribute("id")!==albumsList.head) enter_album(dragging, e.target.getAttribute("id"))
                                     }}
+                                    onDragOver={e=>{
+                                        e.preventDefault();
+                                    }}
+                                    onDrop = {async (e)=>{
+                                        setDraggingHook("");
+                                        await set(ref(db, `/${id}/albums`),
+                                            albumsList
+                                        )
+                                    }}
                                     className="Grade"
                                     >
                                         {tmp.name}
