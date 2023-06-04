@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/revvvview/static/css/main.a99a28d2.css",
-    "main.js": "/revvvview/static/js/main.2fdb65c8.js",
+    "main.js": "/revvvview/static/js/main.e0f97cd3.js",
     "static/js/787.17286c6f.chunk.js": "/revvvview/static/js/787.17286c6f.chunk.js",
     "static/media/logo.svg": "/revvvview/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "static/media/Update.svg": "/revvvview/static/media/Update.bc560eed709f7e2c90f718bfe23058c6.svg",
     "index.html": "/revvvview/index.html",
     "static/media/Delete.svg": "/revvvview/static/media/Delete.cb83596ee618be66d23a55ce8400b038.svg",
     "main.a99a28d2.css.map": "/revvvview/static/css/main.a99a28d2.css.map",
-    "main.2fdb65c8.js.map": "/revvvview/static/js/main.2fdb65c8.js.map",
+    "main.e0f97cd3.js.map": "/revvvview/static/js/main.e0f97cd3.js.map",
     "787.17286c6f.chunk.js.map": "/revvvview/static/js/787.17286c6f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a99a28d2.css",
-    "static/js/main.2fdb65c8.js"
+    "static/js/main.e0f97cd3.js"
   ]
 }
