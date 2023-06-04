@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import * as config from './config'
 import './AlbumList.css'
 
 import db from './Firebase'
-import { ref, set, onValue} from "firebase/database";
+import { ref, set} from "firebase/database";
 
 import html2canvas from 'html2canvas';
 import ScreenshotModal from './ScreenshotModal';
@@ -91,9 +90,6 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
             }
 
         }
-
-        const dragging_prev = tmp_list[dragging].prev
-        const dragging_next = tmp_list[dragging].next
 
         const target_prev = tmp_list[target].prev
         const target_next = tmp_list[target].next

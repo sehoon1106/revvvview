@@ -55,7 +55,6 @@ const AddModal = ({setModal, id, prev, next, albumList}) => {
     }
     
     const add_album = async () => {
-        var added_albumList = {...albumList}
         var input_data;
         var addr;
 
@@ -133,7 +132,7 @@ const AddModal = ({setModal, id, prev, next, albumList}) => {
                 <button
                     onClick={()=>{setAddMode(0)}}
                     className='ModeButtonInner'
-                    style={{color:(addMode==0?'white':'#999999')}}
+                    style={{color:(addMode===0?'white':'#999999')}}
                     >
                     Album
                 </button>
@@ -141,7 +140,7 @@ const AddModal = ({setModal, id, prev, next, albumList}) => {
                 <button 
                     onClick={()=>{setAddMode(1)}} 
                     className='ModeButtonInner'
-                    style={{color:(addMode==1?'white':'#999999')}}
+                    style={{color:(addMode===1?'white':'#999999')}}
                     >
                     Grade
                 </button>

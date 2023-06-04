@@ -7,7 +7,7 @@ import './AlbumList.css';
 
 
 import db from './Firebase';
-import { ref, set, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import { getAuth } from 'firebase/auth';
 
 

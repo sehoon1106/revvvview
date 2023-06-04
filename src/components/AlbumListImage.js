@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import * as config from './config'
 import './AlbumList.css'
 import {ReactComponent as DeleteIcon} from './Delete.svg'
 import {ReactComponent as UpdateIcon} from './Update.svg'
@@ -10,7 +8,7 @@ import UpdateModal from './UpdateModal';
 import AddModal from './AddModal';
 
 import db from './Firebase'
-import { ref, set, onValue} from "firebase/database";
+import { ref, set} from "firebase/database";
 
 const AddButton_svg= <svg className='AddButton' viewBox="0 0 6 133" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="3" y1="73" x2="3" y2="133"/><line x1="3" y1="60" x2="3" y2="-1.19249e-08" /><line x1="6" y1="66" x2="-8.74228e-08" y2="66" /><line x1="3" y1="63" x2="3" y2="69" /></svg>
 
@@ -18,7 +16,6 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
     // const album = config.test_data.sehoon1106.albums;   
     const [ModalData, setModalData] = useState({})
     const [modal, setModal] = useState(-1)
-    const [addButtonHover, setAddButtonHover] =useState("")
         
     var dragging = ""
     const [draggingHook, setDraggingHook] = useState("");
@@ -59,8 +56,6 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
 
         }
 
-        const dragging_prev = tmp_list[dragging].prev
-        const dragging_next = tmp_list[dragging].next
 
         const target_prev = tmp_list[target].prev
         const target_next = tmp_list[target].next

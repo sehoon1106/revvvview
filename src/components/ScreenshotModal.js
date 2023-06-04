@@ -36,7 +36,7 @@ const ScreenshotModal = ({setModal, name, image}) => {
     return (
         <div className="ScreenshotModal">
             <input value={filename} onChange={typing} id="ScreenshotFileName" placeholder={default_filename}></input><span>.png</span>
-            <img src={image.toDataURL()} id="Screenshot"></img>
+            <img src={image.toDataURL()} id="Screenshot" alt="Captured Image"></img>
             <div className='ScreenshotModalbuttonBox'>
                 <button id="cancleButton" className="ScreenshotModalButton" onClick={close_modal}>Close</button>
                 <button id="copyButton" className="ScreenshotModalButton" onClick={copyToClipboard}>Copy</button>

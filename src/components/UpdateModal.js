@@ -3,12 +3,10 @@ import './UpdateModal.css'
 
 import db from './Firebase'
 import { useState } from 'react';
-import { ref, remove, set} from "firebase/database";
-import { useNavigate } from 'react-router-dom';
+import { ref, set} from "firebase/database";
 
 const UpdateModal = ({setModal, id, gradeId, albumList}) => {
     // console.log(albumList)
-    const navigate = useNavigate();
     const [grade, setGrade] = useState(albumList[gradeId].name)
     
     const close_modal = () =>{

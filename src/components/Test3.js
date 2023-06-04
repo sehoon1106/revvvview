@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAuth, GoogleAuthProvider, getRedirectResult, setPersistence, signInWithRedirect, signOut, browserSessionPersistence, browserLocalPersistence, getAdditionalUserInfo } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, getRedirectResult, setPersistence, signInWithRedirect, signOut, browserLocalPersistence, getAdditionalUserInfo } from "firebase/auth";
 
 import db from './Firebase'
-import { ref, set, onValue} from "firebase/database";
+import { ref, set} from "firebase/database";
 
 function Test3() {
   const [loginInfo, setLoginInfo] = useState({});
