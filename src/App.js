@@ -5,7 +5,7 @@ import AlbumListPage from './components/AlbumListPage';
 import Test2 from './components/Test2';
 import Test3 from './components/Test3';
 import AlbumReviewPage from './components/AlbumReviewPage'
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 
 function App() {
