@@ -3,6 +3,7 @@ import './ScreenshotModal.css'
 
 import { useState } from 'react';
 
+import notify from "./notification"
 import { saveAs } from 'file-saver';
 
 
@@ -20,7 +21,8 @@ const ScreenshotModal = ({setModal, name, image}) => {
     const copyToClipboard = () =>{
         image.toBlob((blob) => {
             var item = new ClipboardItem({ "image/png": blob });
-            navigator.clipboard.write([item]);
+            navigator.clipboard.write([item])
+            .then(notify("Copied","Successfully copied to clipboard"))
         });
     }
     const downloadScreenshot = () => {

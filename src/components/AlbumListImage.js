@@ -7,6 +7,8 @@ import DeleteModal from './DeleteModal';
 import UpdateModal from './UpdateModal';
 import AddModal from './AddModal';
 
+import notify from "./notification"
+
 import db from './Firebase'
 import { ref, set} from "firebase/database";
 
@@ -26,6 +28,8 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
     const resetHoveredAlbum = () => {
         setHoveredAlbum("")
     }
+
+
     
     //check if the target is before(returns 0) or after(returns 1) dragging
     const check_order = (dragging, target) =>{
@@ -167,7 +171,7 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                                         setDraggingHook("");
                                         await set(ref(db, `/${id}/albums`),
                                             albumsList
-                                        )
+                                        ).then(notify("Auto Saved", "Automatically saved the list."))
                                     }}
                                     className="Grade"
                                     >
@@ -225,7 +229,7 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
                                     setDraggingHook("");
                                     await set(ref(db, `/${id}/albums`),
                                         albumsList
-                                    )
+                                    ).then(notify("Auto Saved", "Automatically saved the list."))
                                 }}
                                 style={{
                                     outline: tmp.id===hoveredAlbum?'2px solid white' : 'none',

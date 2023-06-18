@@ -39,7 +39,7 @@ html {
 }
 
 .AlbumArtwork{
-    width: min(80vh, 56vw, calc(50vw + 100px));
+    height: min(80vh, 56vw, calc(50vw + 100px));
     object-fit: cover;
 }
 
@@ -94,7 +94,8 @@ a:focus{
 
 .Delete{
     cursor: pointer;
-    fill:white
+    fill:white;
+    width:25px;
 }
 
 .AlbumAtribute{

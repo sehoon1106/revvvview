@@ -11,6 +11,8 @@ import { ref, set, onValue} from "firebase/database";
 import DeleteModal from './DeleteModal';
 import { getAuth } from 'firebase/auth';
 
+import notify from './notification';
+
 // const album = config.test_data.sehoon1106.albums[1657869377]
 
 const arrow = <svg style={{height:"16px"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-6 h-6">
@@ -91,7 +93,8 @@ const AlbumReviewPage = () => {
       // Call your function here that you want to run after typing delay
       // For example: myFunction();
       try {
-        await set(ref(db, `/${id}/albums/${albumId}/review`), current_review);
+        await set(ref(db, `/${id}/albums/${albumId}/review`), current_review)
+        notify("Auto Saved", "Automatically saved the list.");
         console.log('Review updated successfully in Firebase');
       } catch (error) {
         console.error('Failed to update review in Firebase:', error);
@@ -145,7 +148,7 @@ const AlbumReviewPage = () => {
       <span className="AlbumInfoBox">
         <div className="AlbumTitle">
           <span>{album.name}</span>
-          <DeleteIcon onClick={deleteClick} className="Delete"></DeleteIcon>
+          {is_owner?<DeleteIcon onClick={deleteClick} className="Delete"></DeleteIcon>:null}
         </div>
         <div><span className="AlbumAtribute">Artist</span><span>{album.artistName}</span></div>
         <div><span className="AlbumAtribute">Released</span><span>{releaseDate}</span></div>

@@ -5,7 +5,7 @@ html {
 }
 
 .ScreenshotModal {
-    width: var(--img-width);
+    width: calc( var(--img-width) + 20px );
     max-height: 80%;
     
     position: fixed;
@@ -16,7 +16,9 @@ html {
     padding-top: 25px;
     padding-bottom: 20px;
     
-    background-color: #1F1F1F;
+    border: 1px solid white;
+    backdrop-filter: blur(10px) brightness(70%);
+    -webkit-backdrop-filter: blur(10px) brightness(80%);
     border-radius: 30px;
 
     z-index: 10000;
@@ -26,7 +28,7 @@ html {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
-.AddModal::-webkit-scrollbar{
+.ScreenshotModal::-webkit-scrollbar{
     display: none;
 }
 
@@ -57,7 +59,7 @@ html {
 }
 
 #Screenshot{
-    width: calc(var(--img-width) - 20px);
+    width: var(--img-width);
     margin-left: 10px;
 }
 

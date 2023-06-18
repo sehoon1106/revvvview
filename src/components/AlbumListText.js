@@ -6,6 +6,7 @@ import './AlbumList.css'
 import db from './Firebase'
 import { ref, set} from "firebase/database";
 
+import notify from './notification';
 import html2canvas from 'html2canvas';
 import ScreenshotModal from './ScreenshotModal';
 import { GoogleAuthProvider, browserLocalPersistence, getAuth, setPersistence, signInWithRedirect, signOut } from 'firebase/auth';
@@ -201,6 +202,7 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
                             await set(ref(db, `/${id}/albums`),
                                 albumsList
                             )
+                            .then(notify("Auto Saved", "Automatically saved the list."))
                         }}
                         style={{
                             // outline: tmp.id===hoveredAlbum?'2px solid white' : 'none',
