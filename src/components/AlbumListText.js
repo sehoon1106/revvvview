@@ -22,26 +22,8 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
     const [is_logged_in, setLoggedIn] = useState(false)
 
     const auth = getAuth();
-    const provider = new GoogleAuthProvider();
 
-    const signInGoogle = () => {
-        setPersistence(auth, browserLocalPersistence)
-          .then(() => {
-            signInWithRedirect(auth, provider);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-    };
-    const signOutHandler = () => {
-        signOut(auth)
-        .then(() => {
-            setLoggedIn(false);
-            })
-            .catch((error) => {
-            console.log(error);
-            });
-    };
+    
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async(user) => {
             if (user) {
@@ -140,9 +122,7 @@ const AlbumListText = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbums
       };
     
     const generateAlbumsList = (album) => {
-        var tmp_albumsList=[<div className="userNameHolder">
-                                {is_logged_in?<div id='LogInText'onClick={signOutHandler}>Log Out</div>:<div id='LogInText'onClick={signInGoogle}>Log In</div>}
-                            </div>];
+        var tmp_albumsList=[];
         // const album = config.test_data.sehoon1106.albums;
         let tmp = album[album.head];
         let albumArr = [];

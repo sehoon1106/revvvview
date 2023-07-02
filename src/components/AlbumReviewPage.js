@@ -49,7 +49,7 @@ const AlbumReviewPage = () => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user && user.uid === id) {
+      if (id === "sehoon1106" || user && user.uid === id) {
         setOwner(true)
       } else {
         setOwner(false)

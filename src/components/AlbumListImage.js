@@ -305,7 +305,6 @@ const AlbumListImage = ({id, hoveredAlbum, setHoveredAlbum, albumsList, setAlbum
             {modal===0 && <DeleteModal setModal={setModal} id={id} albumId={ModalData.id} albumList={albumsList} gradeName={ModalData.gradeName}></DeleteModal>}
             {modal===1 && <UpdateModal setModal={setModal} id={id} gradeId={ModalData.id} albumList={albumsList}></UpdateModal>}
             {modal===2 && <AddModal setModal={setModal} id={id} prev={ModalData.prev} next={ModalData.next} albumList={albumsList}></AddModal>}
-            <div className="userName">{name}</div>
             {generateAlbumsList(albumsList)}
         </div>
     );
