@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/revvvview/static/css/main.6af491a3.css",
-    "main.js": "/revvvview/static/js/main.c91d6997.js",
+    "main.css": "/revvvview/static/css/main.f037fc0f.css",
+    "main.js": "/revvvview/static/js/main.040cb160.js",
     "static/js/787.17286c6f.chunk.js": "/revvvview/static/js/787.17286c6f.chunk.js",
     "static/media/Roque Colored.woff": "/revvvview/static/media/Roque Colored.dcaac2370fecd999dcbd.woff",
     "static/media/SpaceOdyssey.woff": "/revvvview/static/media/SpaceOdyssey.77c6aa2c2244809a71bb.woff",
@@ -9,12 +9,12 @@
     "index.html": "/revvvview/index.html",
     "static/media/Update.svg": "/revvvview/static/media/Update.bc560eed709f7e2c90f718bfe23058c6.svg",
     "static/media/Delete.svg": "/revvvview/static/media/Delete.cb83596ee618be66d23a55ce8400b038.svg",
-    "main.6af491a3.css.map": "/revvvview/static/css/main.6af491a3.css.map",
-    "main.c91d6997.js.map": "/revvvview/static/js/main.c91d6997.js.map",
+    "main.f037fc0f.css.map": "/revvvview/static/css/main.f037fc0f.css.map",
+    "main.040cb160.js.map": "/revvvview/static/js/main.040cb160.js.map",
     "787.17286c6f.chunk.js.map": "/revvvview/static/js/787.17286c6f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6af491a3.css",
-    "static/js/main.c91d6997.js"
+    "static/css/main.f037fc0f.css",
+    "static/js/main.040cb160.js"
   ]
 }
